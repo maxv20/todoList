@@ -1,0 +1,33 @@
+/* Modal.css */
+
+@keyframes popIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+.modal-content {
+    position: fixed; /* Fixed position */
+    top: 50%; /* Move down to the middle */
+    left: 50%; /* Move right to the middle */
+    transform: translate(-50%, -50%); /* Adjust the position */
+    width: 30%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black; /* Black outline */
+    border-radius: 10px; /* Round borders */
+    background-color: #444; /* Lighter than the dark background */
+    animation: popIn 0.3s ease-out forwards; /* Add pop-up animation */
+  }
+
+  .ReactModal__Overlay--after-open {
+    filter: none !important;
+  }

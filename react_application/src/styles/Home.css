@@ -1,0 +1,7 @@
+/* Home.css */
+.home-text {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center; /* Add this line to center the text */
+    width: 100%; /* Add this line to make the text span the full width of its container */
+  }
