@@ -1,10 +1,10 @@
 // Todo.js
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { FaTrash } from 'react-icons/fa';
-import '../styles/Create.css'; // Import the CSS file
+import { FaTrash, FaCheck } from 'react-icons/fa';
+import '../styles/Create.css';
 
-function Todo({ todo, index, handleDeleteTodo }) {
+function Todo({ todo, index, handleDeleteTodo, handleToggleComplete }) {
   return (
     <Draggable key={todo.id} draggableId={String(todo.id)} index={index}>
       {(provided, snapshot) => (
@@ -14,10 +14,11 @@ function Todo({ todo, index, handleDeleteTodo }) {
           {...provided.dragHandleProps}
           style={{ ...provided.draggableProps.style, opacity: snapshot.isDragging ? 0.5 : 1 }}
         >
-          <div className={`todo-item ${snapshot.isDragging ? 'dragging' : ''}`}>
-            {todo.name}
+            <div className={`todo-item ${snapshot.isDragging ? 'dragging' : ''}`}>
+            <FaCheck className={`check ${todo.is_done ? 'completed' : ''}`} onClick={() => handleToggleComplete(todo.id)} />
+            <span className={`todo-name ${todo.is_done ? 'completed' : ''}`}>{todo.name}</span>
             <FaTrash className="trashcan" onClick={() => handleDeleteTodo(todo.id)} />
-          </div>
+            </div>
         </div>
       )}
     </Draggable>

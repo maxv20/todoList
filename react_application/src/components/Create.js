@@ -27,7 +27,7 @@ function Create() {
   const handleAddTodo = () => {
     setModalIsOpen(false);
     setTimeout(() => {
-      setTodos([...todos, { id: uuidv4(), name: input }]);
+      setTodos([...todos, { id: uuidv4(), name: input, is_done: false }]);
       setInput('');
 
       const newTodo = {todoItem: {name: input}};
@@ -39,6 +39,28 @@ function Create() {
           console.error('There was an error!', error);
         });
     }, 400); // Delay the addition of the new todo item
+  };
+
+  const handleToggleComplete = (id) => {
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        todo.is_done = !todo.is_done;
+
+        const updated_is_done = {todoItem: {is_done: todo.is_done}};
+  
+        axios.put(`http://127.0.0.1:8000/api/todoItem/${id}`, updated_is_done)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error('There was an error!', error);
+          });
+  
+        return todo;
+      } 
+
+      return todo;
+    }));
   };
 
   const handleOnDragEnd = (result) => {
@@ -56,7 +78,7 @@ function Create() {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
 
-    // If you also want to delete the todo item from the backend:
+
     axios.delete(`http://127.0.0.1:8000/api/todoItem/${id}`)
       .then(response => {
         console.log(response.data);
@@ -81,7 +103,7 @@ function Create() {
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <div className="todo-container">
-          <TodoContainer todos={todos} handleDeleteTodo={handleDeleteTodo} />
+          <TodoContainer todos={todos} handleDeleteTodo={handleDeleteTodo} handleToggleComplete={handleToggleComplete} />
         </div>
       </DragDropContext>
     </div>

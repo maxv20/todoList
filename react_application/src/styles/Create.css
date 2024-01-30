@@ -48,6 +48,7 @@
 .todo-item {
     border: 1px solid #000; /* Add a border around each todo item */
     padding: 10px; /* Add some padding */
+    margin-top: 10px;
     margin-bottom: 10px; /* Add some margin to separate the items */
     width: 220px; /* Set a width */
     text-align: center; /* Center the text */
@@ -82,6 +83,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow */
     background-clip: padding-box; /* Don't let the background bleed outside the border */
     border: solid 5px black; /* Make the border transparent */
+  }
+
+  .check.completed {
+    color: green;
+  }
+  
+  .todo-name.completed {
+    text-decoration: line-through;
+  }
+
+  .check:hover {
+    color: grey;
+    cursor: pointer;
   }
 
   
