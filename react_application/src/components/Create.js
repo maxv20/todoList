@@ -90,6 +90,11 @@ function Create() {
 
   return (
     <div className="create-todo">
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <div className="todo-container">
+          <TodoContainer todos={todos} handleDeleteTodo={handleDeleteTodo} handleToggleComplete={handleToggleComplete} />
+        </div>
+      </DragDropContext>
       <button className="todo-button" onClick={() => setModalIsOpen(true)}>Add Todo</button>
       <Modal 
         isOpen={modalIsOpen} 
@@ -100,12 +105,6 @@ function Create() {
         <input className="todo-input" value={input} onChange={e => setInput(e.target.value)} />
         <button className="todo-button" onClick={handleAddTodo}>Add Todo</button>
       </Modal>
-
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <div className="todo-container">
-          <TodoContainer todos={todos} handleDeleteTodo={handleDeleteTodo} handleToggleComplete={handleToggleComplete} />
-        </div>
-      </DragDropContext>
     </div>
   );
 }

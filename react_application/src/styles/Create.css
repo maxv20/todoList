@@ -44,6 +44,11 @@
     border-radius: 10px; /* Round borders */
   }
 
+  .todo-button:hover {
+    background-color: #ddd; /* Change this to your preferred color */
+    cursor: pointer;
+  }
+
 /* Create.css */
 .todo-item {
     border: 1px solid #000; /* Add a border around each todo item */
